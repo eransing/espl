@@ -28,6 +28,16 @@ static int char2char(int ch) {
 	return bc_bits2char(bc_char2bits(ch, bits));
 }
 
+int *bc_char2bits(int ch, int *bits){
+  int i;
+  for(i=0; i!=8; i++){
+    bits[i] = ch % 2;
+    ch = ch / 2;
+  }
+  return bits;
+}
+
+
 void bc_test() {
 	int bits[BC_NBITS] = {0, 0, 0, 0, 0, 1, 0, 0};
 

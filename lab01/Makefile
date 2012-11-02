@@ -16,6 +16,8 @@ test: encbc decbc testbc
 
 decbc: decbc.o bclib.o
 	$(CC) $(CFLAGS) -o $@ $^
+encbc: encbc.o
+	$(CC) $(CFLAGS) -o $@ $^
 
 testbc: bclib.c
 	$(CC) $(CFLAGS) -o $@ -DTESTBC=1 $^
@@ -23,6 +25,7 @@ testbc: bclib.c
 # TODO: add rule for encbc.o
 decbc.o: decbc.c bclib.h
 bclib.o: bclib.c bclib.h
+encbc.o: encbc.c bclib.h
 
 clean:
 	rm -f *.o encbc decbc testbc
