@@ -25,7 +25,7 @@ int is_key_word(char *name){
 }
 
 
-
+// a comparison funtion to compare two names in the names array
 int struct_cmp_by_name(const void *a, const void *b) 
 { 
     struct names *ia = (struct names *)a;
@@ -68,7 +68,7 @@ int main(int argc, char **argv) {
 	 
 	 int nl_names_size= (sizeof(nl->names)) / sizeof (char*);
 	//TODO to complete
-	qsort(nl->names, nl_names_size ,sizeof(struct names), struct_cmp_by_name);
+	qsort(nl->names, nl_names_size ,sizeof(char *), struct_cmp_by_name);
 	
 	 for(i = 0; i!=nl->size; i++) {
 		if ((nl->names[i].count) ==1) { 

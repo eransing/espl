@@ -24,8 +24,8 @@ int is_key_word(char *name){
     return 0;
 }
 
-
-
+//TODO to fix
+// a comparison funtion to compare two names in the names array
 int struct_cmp_by_name(const void *a, const void *b) 
 { 
     struct names *ia = (struct names *)a;
