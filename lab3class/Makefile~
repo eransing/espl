@@ -1,0 +1,15 @@
+CC=gcc
+CFLAGS=-O -g
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+all: bcamp
+
+xsum: bcamp.o
+	$(CC) $(CFLAGS) -o $@ $^
+
+bcamp.o: bcamp.c
+
+clean:
+	rm -f *.o bcamp
