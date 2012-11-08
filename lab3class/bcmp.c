@@ -53,14 +53,16 @@ main(int argc, char *argv[ ]) {
     
     FILE *fpOld;
     fpOld=fopen(fileOld, "r");
-    if (fpOld == NULL)
+    if (fpOld == NULL){
+      	 printf("the program cannot open the old file and will exit");
       return 0;
-    
+    }
     FILE *fpNew;
     fpNew=fopen(fileNew, "r");    
-       if (fpNew == NULL)
+       if (fpNew == NULL){
+	 printf("the program cannot open the new file and will exit");
       return 0;
-    
+       }
     
 	char chOld;
 	char chNew;
