@@ -14,7 +14,7 @@ main(int argc, char *argv[ ]) {
     int placeOfChar = 0;
     int numOfDiff = 0;
     int firstNumberOfDiff =0;
-    extern char *optarg;
+   // extern char *optarg;
     //extern int optind, optopt;
     
     
@@ -47,8 +47,8 @@ main(int argc, char *argv[ ]) {
     
     //recieving the files
     int argumentNumOfFileOld = 1 + qOptionActive + nOptionActive + hOptionActive;
-    fileOld = argv[argumentNumOfFileOld];
-    fileNew = argv[argumentNumOfFileOld+1];
+    fileOld = argv[optind];
+    fileNew = argv[optind+1];
 
     
     FILE *fpOld;
@@ -64,13 +64,16 @@ main(int argc, char *argv[ ]) {
       return 0;
        }
     
+    
+    
+    //------------------------------------------------------------------------------------------------
 	char chOld;
 	char chNew;
 
     while (    (fread(&chOld, sizeof(chOld), 1, fpOld)) && (fread(&chNew, sizeof(chNew), 1, fpNew))){
 
        
-       placeOfChar++;
+       
        
       if(chOld != chNew){
 	if (qOptionActive ==1)
@@ -78,14 +81,15 @@ main(int argc, char *argv[ ]) {
 	
 	numOfDiff++;
 	if  ((nOptionActive != 0) && (numOfDiff <= firstNumberOfDiff) ) {
-	printf("\r\nbyte %d - %x +%x\r\n", placeOfChar, chOld, chNew);
+	printf("\r\nbyte %d -%x +%x\r\n", placeOfChar, chOld, chNew);
 	}
 	if(nOptionActive == 0){
-	printf("\r\nbyte %d - %x +%x\r\n", placeOfChar, chOld, chNew);
+	printf("\r\nbyte %d -%x +%x\r\n", placeOfChar, chOld, chNew);
 
 	}
       }
       
+      placeOfChar++;
     }
     
     	if ( (qOptionActive ==1) && (numOfDiff == 0) )

@@ -4,12 +4,12 @@ CFLAGS=-O -g
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-all: bcmp
+all: xsum
 
-bcmp: bcmp.o
+xsum: xsum.o
 	$(CC) $(CFLAGS) -o $@ $^
 
-bcmp.o: bcmp.c
+xsum.o: xsum.c
 
 clean:
-	rm -f *.o bcmp
+	rm -f *.o xsum
