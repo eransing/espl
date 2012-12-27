@@ -1,0 +1,6 @@
+Makefile
+esplsh
+esplsh.c
+esplsh.c~
+esplsh.o
+out.txt
