@@ -19,11 +19,11 @@ while (guess != "quit"):
 	
 	if (plays = 0):
 		print"\n*** New Game! ***"
-		badGuess="" # all bad guesseed letters
-		guessed= "" #all guessed letters, wrong and right
-		match = ["_"*len(word)] #the partial match
+		badGuess=""
+		guessed= ""
+		match = ["_"*len(word)]
 	plays +=1
-	guess="" #current guess
+	guess=""
 	
 	#a loop of one game
 	while (guess!=word) and (guess != "quit"):
@@ -34,32 +34,19 @@ while (guess != "quit"):
 		print "word so far: "+match+"\n"
 		guess = input("Guess a letter: ")
 		out = False
-		
 		if (len(guess)>1):
 			print"Uh oh: You can only guess a single letter at a time\n"
-		else: 
-			for i in range(len(guessed)-1): #check if the letter is in the guessed list
+		else:
+			for i in range(len(guessed)-1):
 				if guess == guessed[i]:
 					print "Uh oh: You have already tried "+guess+"\n"
 					out = True
 			if !out:
 				for i in range(len(word)-1):
-					if guess == word[i]: # change the __ to the letter
+					if guess == word[i]:
 						match[i] = guess
 						goodtry = True
-				if (goodtry):
-				  if (match == word):
-				    print "** You've been pardoned!! Well done!  The word was %s\n" %(word)
-				  else:
-				    print "* Great! The letter "+guess+" appears in the word!\n"
-				else:  #the letter does not apear in the word
-				  badGuess = badGuess +guess
-				  if(len (badGuess) == 0):
-				    print "** Uh oh: you've run out of steps. You're on the platform.. and <SNAP!>\n"
-				    print "** The word you were trying to guess was "+match+"\n"
-				  else:
-				    print "* Nope, "+guess+" does not appear in the word."
-
-				  
+      
+		
 exit
 		
