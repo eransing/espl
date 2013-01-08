@@ -1,9 +1,6 @@
 import sys
 import random
-def soFar(word,guessed):
- 
-  print
-   
+  
 
 wordsFile = open('long-words.txt').read()
 words = wordsFile.split("\n")
@@ -11,41 +8,47 @@ numOfLine = random.randint(0, len(words))
 word = words[numOfLine]
 
 guess = ''
-plays = 0
+
 while (guess != "quit"):
 	# pick a new word from the library
 	numOfLine = random.randint(0, len(words))
 	word = words[numOfLine]
-	
-	if (plays == 0):
-		print"\n*** New Game! ***"
-		badGuess="" # all bad guesseed letters
-		guessed= "" #all guessed letters, wrong and right
-		match = ["_"*len(word)] #the partial match
-	plays +=1
+	print("the word is:  %s\n" %word)
+	print"\n*** New Game! ***"
+	badGuess="" # all bad guesseed letters
+	guessed= "" #all guessed letters, wrong and right
+	match = '-'*len(word) #the partial match
 	guess="" #current guess
 	
 	#a loop of one game
-	while (guess!=word) and (guess != "quit"):
+	while (match!=word) and (guess != "quit"):
 		goodtry = False
 		if (len(guessed)> 0): 
-			print "guessed: %d, " %(len(guessed))
+			print "guessed: %s, " %(guessed)
 		print "steps from gallows: %d," %(6- (len(badGuess)))
-		print "word so far: "+match+"\n"
-		guess = input("Guess a letter: ")
+		print "word so far: %s\n" %match
+		guess = raw_input("Guess a letter: ")
+		print ("****  the letter you guessed is %s  ***\n" %guess)
 		out = False
 		
 		if (len(guess)>1):#if  incorrect input
-			print"Uh oh: You can only guess a single letter at a time\n"
+			if (guess != "quit"):
+				print"Uh oh: You can only guess a single letter at a time\n"
 		else: 
+			guessed = guessed + guess
 			for i in range(len(guessed)-1): #check if the letter is in the guessed list
 				if guess == guessed[i]:
 					print "Uh oh: You have already tried "+guess+"\n"
 					out = True
 			if (out == False):
-				for i in range(len(word)-1):
+				for i in range(len(word)):
 					if guess == word[i]: # change the __ to the letter
-						match[i] = guess
+						matchnew = list(match) #TODO problam with assignment
+						matchnew[i] = guess
+						match = "".join(matchnew)
+						print"**********\n"
+						print match
+						print"\n"
 						goodtry = True
 				if (goodtry):
 				  if (match == word):
@@ -61,5 +64,5 @@ while (guess != "quit"):
 				    print "* Nope, "+guess+" does not appear in the word."
 
 				  
-exit
+exit 
 		 
