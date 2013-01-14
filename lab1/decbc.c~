@@ -3,6 +3,7 @@
 #include "bclib.h"
 
 int main(int argc, char **argv) {
+printf("im here!!!!!!!");
 	char line[BC_WIDTH+1]; /* buffer for reading and writing */
 	int barcode[BC_WIDTH][BC_NBITS] = {0};
 	int i, j;
