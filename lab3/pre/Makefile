@@ -4,19 +4,12 @@ CFLAGS=-O -g
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-all: bcmp diff
+all: xsum
 
-bcmp: bcmp.o
+xsum: xsum.o
 	$(CC) $(CFLAGS) -o $@ $^
 
-bfix: bfix.o diff.o
-	$(CC) $(CFLAGS) -o $@ $^
-
-diff: diff.o
-	
-bcmp.o: bcmp.c
-bfix.o: bfix.c diff.h
-diff.o: diff.c diff.h
+xsum.o: xsum.c
 
 clean:
-	rm -f *.o bcmp bfix diff
+	rm -f *.o xsum
