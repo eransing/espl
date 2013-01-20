@@ -9,8 +9,8 @@ cmpstr:
 loop:
 	mov	ebx, DWORD [ebp+8]; first parameter
 	mov	ecx,DWORD [ebp+12]; second parameter
-	movzx	ebx, BYTE [ebx]
-	movzx	ecx, BYTE [ecx]
+	mov	ebx, BYTE [ebx]
+	mov	ecx, BYTE [ecx]
 	cmp	ebx, 0 		; if ( str1[i] == 0 ) break;
 	je	notEqual
 	cmp	ebx, ecx	
