@@ -104,18 +104,6 @@ void run_program() {
   
 
 
-    //TODO to fix
-  if(argc > 2){  
-	int producer = 0;
-    int consumer = 0;
-    for(i =0; i < argc; i++){
-      if (strcmp(argv[i], "|")==0){
-	producer = argv[i-1];
-	consumer = argv[i+1];
-	break;
-      }
-    }
-	}
 	
   /* TODO: background commands */
 
@@ -123,15 +111,27 @@ void run_program() {
     waitpid(pid, &status, 0);
     sprintf(ststr, "%d", status);
     setenv("?", ststr, 1);
-  } else if(pid==0) {
+  } else if(pid==0) { // child process
    
       // if there is >
   if (argc > 2){
+      //TODO to fix  
+	int producer = 0;
+    int consumer = 0;
+    for(i =0; i < argc; i++){
+      if (strcmp(argv[i], "|")==0){
+		producer = argv[i-1];
+		consumer = argv[i+1];
+		break;
+      }
+    }
+	
   if (strcmp(argv[argc-2],">") ==0 ){
     int fd = open(argv[argc-1],O_WRONLY,0644);
     dup2(fd,1);
     close(fd);
   }
+  //TODO to fix
   if (strcmp(argv[argc-2],"<") ==0 ){
     int fd = open(argv[argc-1],O_WRONLY,0644);
     dup2(fd,0);

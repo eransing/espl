@@ -9,7 +9,9 @@ global strlen
 
 extern main
 _start:
-	lea ecx,[esp+4] ;move pointer to argv
+;	lea ecx, [esp+4] ;move pointer to argv
+        mov ecx, esp
+	add ecx, 4
 	push ecx		;push argv into stack
 	push DWORD [esp+4] ;push argc into stack
 	call	main	;do main from lwc.c
@@ -47,5 +49,19 @@ close:
 	int 0x80	;execute the system call 
 	ret
 	
-strlen:
+strlen: ; strlen(s)
+	push ebp
+	mov ebp, esp
+	mov eax, [ebp+8]
+	dec eax
+
+loop:
+	inc eax
+	mov ecx, [eax]
+	test cl,cl
+	jne loop
+	
+	sub eax, [ebp+8]
+	mov esp, ebp
+	pop ebp
 	ret

@@ -3,9 +3,6 @@
 import os, os.path, sys, getpass, shlex, subprocess
 
 
-
-    
-
   
 def runprog(argv):
   pipe = False
@@ -15,10 +12,13 @@ def runprog(argv):
       progSource = argv[:i]
       progDest = argv[(i+1):]
       
-  if pipe: #TODO not working
-    p1 = Popen(progSource)
-    p2 = Popen(progDest, stdin=p1.stdout)
-    p1.stdout.close()
+  if pipe:
+      try:
+        p1 = subprocess.Popen(progSource, stdout=subprocess.PIPE)
+	subprocess.call(progDest,stdin=progSource.stdout,stdout=sys.stdout)
+      # in case there is no pipe
+      except ValueError:
+	exeInOut()
   else:
     std_out = sys.stdin
     std_in = sys.stdin

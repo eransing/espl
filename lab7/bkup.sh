@@ -1,7 +1,5 @@
 #!/bin/sh
-
 # the backup ..
-
 
 fileName=$1
 NumOfVersion=$2
@@ -17,24 +15,13 @@ fi
 #copy the contant of the file to the new version
 cp $fileName newVersion.txt
 
-echo "everything is ok till now"
-
-
-
 while [ "$NumOfVersion" != "1" ]; do
-
-if [ -e $fileName"."$(( $NumOfVersion - 1)) ] ; then
-
-cp $fileName"."$(( $NumOfVersion - 1)) $fileName"."$NumOfVersion 
-fi
-
-NumOfVersion="$(( $NumOfVersion - 1 ))"
-echo "$NumOfVersion"
-
+	if [ -e $fileName"."$(( $NumOfVersion - 1)) ] ; then
+		cp $fileName"."$(( $NumOfVersion - 1)) $fileName"."$NumOfVersion 
+	fi
+	NumOfVersion="$(( $NumOfVersion - 1 ))"
 done
 
 cp newVersion.txt $fileName".1"
-
 rm newVersion.txt
-
 exit 0
